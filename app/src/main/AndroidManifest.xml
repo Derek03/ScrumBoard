@@ -2,9 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="project.scrumboard">
 
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
     <application
         android:allowBackup="true"
-        android:icon="@drawable/stickieLogo"
+        android:icon="@drawable/stickielogo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -17,6 +21,7 @@
         </activity>
         <activity android:name=".PostIt"></activity>
         <activity android:name=".NewBoard"></activity>
+        <activity android:name=".BoardMainActivity"></activity>
     </application>
 
 </manifest>
