@@ -35,104 +35,40 @@
         android:layout_marginBottom="175dp"
         android:background="@color/postIt">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="SPECS"
+            android:id="@+id/spectitle"
+            android:clickable="true"
+            android:textAlignment="center" />
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:stretchColumns="2"
             android:padding="10dp">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="SPECS"
-                    android:id="@+id/spectitle"
-                    android:clickable="true"
-                    android:layout_column="2"
-                    android:textAlignment="center"
-                    />
-            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="State"
-                    android:id="@+id/statetext"
-                    android:padding="5dp"/>
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown" />
 
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:id="@+id/editText"
                     android:layout_column="2" />
 
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Category"
-                    android:id="@+id/cattext"
-                    android:padding="5dp"/>
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText2"
-                    android:layout_column="2" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Priority"
-                    android:id="@+id/prioritytext"
-                    android:padding="5dp"/>
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText3"
-                    android:layout_column="2" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Requirements"
-                    android:id="@+id/reqtext"
-                    android:padding="5dp"/>
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText4"
-                    android:layout_column="2" />
             </TableRow>
 
         </TableLayout>
