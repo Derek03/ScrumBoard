@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text=""
+            android:textColor="@color/black"
             android:id="@+id/square"
             android:layout_margin="30dp"
             android:background="#8eacc0" />
@@ -25,6 +26,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="State (column)"
+            android:textColor="@color/black"
             android:id="@+id/StateText"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp" />
@@ -49,6 +51,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Category (row)"
+            android:textColor="@color/black"
             android:id="@+id/CategoryText"
             android:layout_below="@+id/addState"
             android:layout_centerHorizontal="true"

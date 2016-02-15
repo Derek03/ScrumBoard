@@ -2,15 +2,13 @@ package project.scrumboard;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class PostIt extends AppCompatActivity {
 
     private Spinner spinner;
-    private static final String[]paths = {"item 1", "item 2", "item 3"};
+    private static final String[]paths = {"state", "category", "requirements", "priority"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

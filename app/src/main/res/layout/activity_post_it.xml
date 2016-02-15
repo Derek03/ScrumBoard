@@ -24,24 +24,26 @@
         android:id="@+id/title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
         android:textSize="40dp"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="275dp"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="175dp"
+        android:textColor="@color/black"
         android:background="@color/postIt">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="SPECS"
+            android:text="@string/specs"
             android:id="@+id/spectitle"
             android:clickable="true"
+            android:textColor="@color/black"
             android:textAlignment="center" />
 
         <TableLayout
@@ -57,15 +59,19 @@
 
                 <Spinner
                     android:id="@+id/spinner1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/btn_dropdown"
+                    android:layout_height="50dp"
+                    android:gravity="bottom"
+                    android:background="@color/buttonblue"
                     android:spinnerMode="dropdown" />
 
                 <EditText
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="bottom"
+                    android:foreground="@color/buttonblue"
+                    android:textColor="@color/black"
                     android:id="@+id/editText"
                     android:layout_column="2" />
 
@@ -89,8 +95,19 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Notes"
             android:id="@+id/notes"
+            android:textColor="@color/black"
             android:layout_gravity="center_horizontal|top"
             android:textSize="30dp"/>
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:foreground="@color/buttonblue"
+            android:layout_below="@id/notes"
+            android:id="@+id/editNotes"
+            android:layout_column="2"
+            android:layout_gravity="center" />
     </FrameLayout>
 
 

@@ -15,7 +15,9 @@
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:text="Previous Project"
+        android:textColor="@color/black"
         android:id="@+id/button"
+        android:tag='One'
         android:layout_marginTop="45dp"
         android:layout_centerHorizontal="true"
         android:background="@color/postIt" />
@@ -25,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Others"
+        android:tag='Two'
         android:id="@+id/button2"
         android:layout_below="@+id/button"
         android:layout_marginTop="72dp"
