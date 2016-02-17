@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewAllPoject = (Button) findViewById(R.id.button);
+        viewAllPoject = (Button) findViewById(R.id.previous);
         viewAllPoject.setOnClickListener(Listener);
-        newPButton = (Button) findViewById(R.id.button2);
+        newPButton = (Button) findViewById(R.id.add);
         newPButton.setOnClickListener(Listener);
     }
 
@@ -27,12 +27,14 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent = null;
             switch(view.getTag().toString()) {
-                case "One":
+                case "Previous":
                     intent = new Intent(MainActivity.this, BoardMainActivity.class);
                     break;
-                case "Two":
-                    intent = new Intent(MainActivity.this, PostIt.class);
+                case "Other":
+                    //intent = new Intent(MainActivity.this, PostIt.class);
                     break;
+                case "Add":
+                    intent = new Intent(MainActivity.this, NewBoard.class);
                 default:
                     break;
             }

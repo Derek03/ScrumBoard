@@ -19,7 +19,7 @@
             android:textColor="@color/black"
             android:id="@+id/square"
             android:layout_margin="30dp"
-            android:background="#8eacc0" />
+            android:background="@color/lightblue" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,5 +70,18 @@
             android:background="@color/buttonblue"
             android:textColor="#ffffff" />
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/plus"
+            android:tag='Add'
+            android:textSize="30dp"
+            android:id="@+id/add"
+            android:background="@color/buttonblue"
+            android:layout_alignBottom="@+id/square"
+            android:layout_alignRight="@+id/addCategory"
+            android:layout_alignEnd="@+id/addCategory"
+            android:layout_marginBottom="20dp" />
 
     </RelativeLayout>
