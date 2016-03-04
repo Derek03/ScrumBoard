@@ -7,7 +7,10 @@ import android.widget.Spinner;
 
 public class PostIt extends AppCompatActivity {
 
-    private Spinner spinner;
+    private Spinner spinner1,
+                    spinner2,
+                    spinner3,
+                    spinner4;
     private static final String[]paths = {"state", "category", "requirements", "priority"};
 
     @Override
@@ -15,13 +18,18 @@ public class PostIt extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_it);
 
-        spinner = (Spinner)findViewById(R.id.spinner1);
+        spinner1 = (Spinner)findViewById(R.id.spinner1);
+        spinner2 = (Spinner)findViewById(R.id.spinner2);
+        spinner3 = (Spinner)findViewById(R.id.spinner3);
+        spinner4 = (Spinner)findViewById(R.id.spinner4);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(PostIt.this,
                 android.R.layout.simple_spinner_item,paths);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
+        spinner1.setAdapter(adapter);
+        spinner2.setAdapter(adapter);
+        spinner3.setAdapter(adapter);
+        spinner4.setAdapter(adapter);
     }
 
     /*public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
