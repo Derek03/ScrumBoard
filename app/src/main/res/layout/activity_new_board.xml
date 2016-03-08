@@ -12,76 +12,67 @@
         android:background="@color/backblue">
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text=""
-            android:textColor="@color/black"
-            android:id="@+id/square"
-            android:layout_margin="30dp"
-            android:background="@color/lightblue" />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightblue"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/listCol"
+            android:layout_row="0"
+            android:layout_column="0" />
+
+        <Button
+            android:layout_width= "match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="State (column)"
-            android:textColor="@color/black"
-            android:id="@+id/StateText"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="New Column"
+            android:id="@+id/colBut"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:background="@color/buttonblue"
+            android:onClick="newCol" />
+
+
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/listRow"
+            android:layout_row="2"
+            android:layout_column="0"
+
+        />
+
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="+"
-            android:id="@+id/addState"
-            android:layout_below="@+id/StateText"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:background="@color/buttonblue"
-            android:textColor="#ffffff"
-            />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Category (row)"
-            android:textColor="@color/black"
-            android:id="@+id/CategoryText"
-            android:layout_below="@+id/addState"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="+"
-            android:id="@+id/addCategory"
-            android:layout_below="@id/CategoryText"
-            android:layout_marginTop="25dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:text="New Row"
+            android:id="@+id/rowBut"
+            android:layout_row="3"
+            android:layout_column="0"
             android:background="@color/buttonblue"
-            android:textColor="#ffffff" />
+            android:onClick="newRow" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="@string/plus"
-            android:tag='Add'
-            android:textSize="30dp"
-            android:id="@+id/add"
-            android:background="@color/buttonblue"
-            android:layout_alignBottom="@+id/square"
-            android:layout_alignRight="@+id/addCategory"
-            android:layout_alignEnd="@+id/addCategory"
-            android:layout_marginBottom="20dp" />
 
-    </RelativeLayout>
+
+    </GridLayout>
+
+</RelativeLayout>
