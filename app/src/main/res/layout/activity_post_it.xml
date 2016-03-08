@@ -16,16 +16,15 @@
         android:layout_height="match_parent"
         android:padding="10dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Title"
         android:id="@+id/title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
-        android:textSize="40dp"/>
+        android:textSize="35dp"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -50,43 +49,115 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:stretchColumns="2"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:id="@+id/colText"
+                    android:text="@string/colText"
+                    android:textSize="25dp"/>
 
                 <Spinner
                     android:id="@+id/spinner1"
                     android:singleLine="true"
-                    android:layout_width="match_parent"
+                    android:layout_width="400dp"
                     android:layout_height="50dp"
-                    android:gravity="bottom"
+                    android:gravity="center"
                     android:background="@color/buttonblue"
                     android:spinnerMode="dropdown" />
+            </TableRow>
 
-                <EditText
-                    android:layout_width="fill_parent"
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="bottom"
-                    android:foreground="@color/buttonblue"
                     android:textColor="@color/black"
-                    android:id="@+id/editText"
-                    android:layout_column="2" />
+                    android:gravity="center"
+                    android:id="@+id/rowText"
+                    android:text="@string/rowText"
+                    android:textSize="25dp"/>
 
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:singleLine="true"
+                    android:layout_width="400dp"
+                    android:gravity="center"
+                    android:layout_height="50dp"
+                    android:background="@color/buttonblue"
+                    android:spinnerMode="dropdown" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:id="@+id/priorityText"
+                    android:text="@string/priorityText"
+                    android:textSize="25dp"/>
+
+                <Spinner
+                    android:id="@+id/spinner3"
+                    android:singleLine="true"
+                    android:layout_width="400dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:background="@color/buttonblue"
+                    android:spinnerMode="dropdown" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:id="@+id/whoText"
+                    android:text="@string/whoText"
+                    android:textSize="25dp"/>
+
+                <Spinner
+                    android:id="@+id/spinner4"
+                    android:singleLine="true"
+                    android:layout_width="400dp"
+                    android:gravity="center"
+                    android:layout_height="50dp"
+                    android:background="@color/buttonblue"
+                    android:spinnerMode="dropdown" />
             </TableRow>
 
         </TableLayout>
     </LinearLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="335dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="340dp"
         android:background="@color/postIt">
 
         <TextView
@@ -96,19 +167,33 @@
             android:text="Notes"
             android:id="@+id/notes"
             android:textColor="@color/black"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="30dp"/>
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:foreground="@color/buttonblue"
+            android:background="@color/buttonblue"
             android:layout_below="@id/notes"
             android:id="@+id/editNotes"
-            android:layout_column="2"
-            android:layout_gravity="center" />
-    </FrameLayout>
+            android:gravity="left|top"
+            android:inputType="textMultiLine"
+            android:layout_margin="10dp"
+            android:layout_above="@+id/button" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/createButton"
+            android:id="@+id/button"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/buttonblue"
+            android:layout_marginBottom="5dp"/>
+    </RelativeLayout>
 
 
 </RelativeLayout>
