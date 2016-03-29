@@ -3,6 +3,7 @@ package project.scrumboard;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,6 +46,8 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
         rowAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rowValues);
         lst2.setAdapter(rowAdapter);
         lst2.setOnItemClickListener(this);
+
+
 
 
     }
@@ -128,5 +131,12 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
         AlertDialog dialog = builder.create();
         dialog.show();
 
+    }
+
+    public void goToPost(View view){
+
+        //button to post it
+        Intent intent = new Intent(NewBoard.this, PostIt.class);
+        startActivity(intent);
     }
 }

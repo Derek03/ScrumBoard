@@ -71,6 +71,19 @@
             android:background="@color/buttonblue"
             android:onClick="newRow" />
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="@string/plus"
+            android:tag='Add'
+            android:textSize="30dp"
+            android:background="@color/buttonblue"
+            android:layout_column="0"
+            android:layout_row="6"
+            android:layout_gravity="end"
+            android:onClick="goToPost"
+            />
 
 
     </GridLayout>
