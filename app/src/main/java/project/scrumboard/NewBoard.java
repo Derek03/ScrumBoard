@@ -1,19 +1,13 @@
 package project.scrumboard;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -27,6 +21,8 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
     private ArrayList<String> rowValues = new ArrayList<>();
     private ArrayAdapter<String> rowAdapter;
     private ArrayAdapter<String> colAdapter;
+    private DBHelper colDB = new DBHelper(this, "columns");
+    private DBHelper rowDB = new DBHelper(this, "rows");
 
 
     @Override
@@ -36,6 +32,7 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
 
         //Column Listview
         lst1 = (ListView) findViewById(R.id.listCol);
+        columnValues = colDB.select();
         colAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, columnValues);
         lst1.setAdapter(colAdapter);
         lst1.setOnItemClickListener(this);
@@ -43,6 +40,7 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
 
         //Row Listview
         lst2 = (ListView) findViewById(R.id.listRow);
+        rowValues = rowDB.select();
         rowAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rowValues);
         lst2.setAdapter(rowAdapter);
         lst2.setOnItemClickListener(this);
@@ -72,6 +70,8 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
         //edit box for alert dialog
         final EditText textboxString = new EditText(this);
 
+
+
         // 1. Instantiate an AlertDialog.Builder with its constructor
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -83,6 +83,7 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value = textboxString.getText().toString();
                         columnValues.add(value);
+                        colDB.insert(value);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -118,6 +119,7 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value = textboxString.getText().toString();
                         rowValues.add(value);
+                        rowDB.insert(value);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
