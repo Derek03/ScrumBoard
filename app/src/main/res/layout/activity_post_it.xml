@@ -147,8 +147,6 @@
                     android:layout_height="50dp"
                     android:background="@color/buttonblue"
                     android:spinnerMode="dropdown" />
-
-
             </TableRow>
 
         </TableLayout>

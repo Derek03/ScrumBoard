@@ -54,7 +54,7 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        //do stuff here when clicked
+        //do stuff here when clicked (delete) - > remove from db
     }
 
 
