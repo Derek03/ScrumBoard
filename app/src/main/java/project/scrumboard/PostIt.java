@@ -17,8 +17,11 @@ public class PostIt extends AppCompatActivity {
                     priority,
                     who;
     private static final String[]paths = {"state", "category", "requirements", "priority"};
+    private static String[] priorityNames = {"High", "Medium", "Low"};
     private static ArrayList<String> columnNames;
     private static ArrayList<String> rowNames;
+    private static ArrayList<String> memberNames  = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +43,37 @@ public class PostIt extends AppCompatActivity {
         for(String value : rowNames){
             Log.d("*******2", value);
         }
+
+        memberNames.add("member1");
+        memberNames.add("member2");
+        memberNames.add("member3");
+
+
         column = (Spinner)findViewById(R.id.spinner1);
         row = (Spinner)findViewById(R.id.spinner2);
         priority = (Spinner)findViewById(R.id.spinner3);
         who = (Spinner)findViewById(R.id.spinner4);
+
+
         ArrayAdapter<String>colAdapter = new ArrayAdapter<String>(PostIt.this,
                 android.R.layout.simple_spinner_item,columnNames);
-
         ArrayAdapter<String>rowAdapter = new ArrayAdapter<String>(PostIt.this,
                 android.R.layout.simple_spinner_item,rowNames);
+        ArrayAdapter<String>priorityAdapter = new ArrayAdapter<String>(PostIt.this,
+                android.R.layout.simple_spinner_item,priorityNames);
+        ArrayAdapter<String>memberAdapter = new ArrayAdapter<String>(PostIt.this,
+                android.R.layout.simple_spinner_item,memberNames);
+
 
         colAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         rowAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        memberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         column.setAdapter(colAdapter);
         row.setAdapter(rowAdapter);
-
-        priority.setAdapter(colAdapter);
-        who.setAdapter(colAdapter);
+        priority.setAdapter(priorityAdapter);
+        who.setAdapter(memberAdapter);
     }
 
     /*public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {

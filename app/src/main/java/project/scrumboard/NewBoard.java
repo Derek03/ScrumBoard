@@ -45,9 +45,6 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
         lst2.setAdapter(rowAdapter);
         lst2.setOnItemClickListener(this);
 
-
-
-
     }
 
 
@@ -63,14 +60,11 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
 
 
 
-
     //clicking the add column button
     public void newCol(View view){
 
         //edit box for alert dialog
         final EditText textboxString = new EditText(this);
-
-
 
         // 1. Instantiate an AlertDialog.Builder with its constructor
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -98,9 +92,6 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
         dialog.show();
 
     }
-
-
-
 
 
 

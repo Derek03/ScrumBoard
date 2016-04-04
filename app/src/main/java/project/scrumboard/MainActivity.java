@@ -36,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d("********", value);
         }
 
-        ArrayList<String> test2 = mydb2.select();
+       // ArrayList<String> test2 = mydb2.select();
 
-        for(String value : test2){
-            Log.d("********2", value);
-        }
+        //for(String value : test2){
+        //    Log.d("********2", value);
+        //}
 
         viewAllPoject = (Button) findViewById(R.id.previous);
         viewAllPoject.setOnClickListener(Listener);
