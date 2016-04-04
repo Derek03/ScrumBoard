@@ -21,25 +21,33 @@ public class DBHelper extends SQLiteOpenHelper {
     public static int number = 0;
 
     private static final String TEXT_TYPE = " TEXT";
-    private static final String COMMA_SEP = ",";
     private String SQL_CREATE_ENTRIES;
-//            "CREATE TABLE " + TABLE_NAME + " (" +
-//                    DataEntry._ID + " INTEGER PRIMARY KEY," +
-//                    DataEntry.COLUMN_NAME_VALUE + TEXT_TYPE +
-//                    " )";
-    private String SQL_DELETE_ENTRIES;// =
-            //"DROP TABLE IF EXISTS " + TABLE_NAME;
+    private String SQL_DELETE_ENTRIES;
 
     public DBHelper(final Context context, final String name)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
         TABLE_NAME = name;
         Log.d("table name", TABLE_NAME);
-        SQL_CREATE_ENTRIES =
-                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
-                        DataEntry._ID + " INTEGER PRIMARY KEY," +
-                        DataEntry.COLUMN_NAME_VALUE + TEXT_TYPE +
-                        " )";
+        if(TABLE_NAME.equals("posts")){
+            SQL_CREATE_ENTRIES =
+                    "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
+                            DataEntry._ID + " INTEGER PRIMARY KEY," +
+                            "title " + "text," +
+                            "description " + "text," +
+                            "members " + "text," +
+                            "priority " + "INTEGER," +
+                            "column " + "text," +
+                            "row " + "text )";
+        }
+        else {
+            SQL_CREATE_ENTRIES =
+                    "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
+                            DataEntry._ID + " INTEGER PRIMARY KEY," +
+                            DataEntry.COLUMN_NAME_VALUE + TEXT_TYPE +
+                            " )";
+        }
         SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
@@ -104,7 +112,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setup(){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL(SQL_DELETE_ENTRIES);
         db.execSQL(SQL_CREATE_ENTRIES);
     }
 }

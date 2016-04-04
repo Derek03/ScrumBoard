@@ -3,7 +3,9 @@ package project.scrumboard;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -12,6 +14,8 @@ import java.util.ArrayList;
 public class PostIt extends AppCompatActivity {
     private static DBHelper colDB;
     private static DBHelper rowDB;
+    private static DBHelper memberDB;
+    private static DBHelper postDB;
     private Spinner column,
                     row,
                     priority,
@@ -20,7 +24,7 @@ public class PostIt extends AppCompatActivity {
     private static String[] priorityNames = {"High", "Medium", "Low"};
     private static ArrayList<String> columnNames;
     private static ArrayList<String> rowNames;
-    private static ArrayList<String> memberNames  = new ArrayList<String>();
+    private static ArrayList<String> memberNames;
 
 
     @Override
@@ -30,23 +34,13 @@ public class PostIt extends AppCompatActivity {
 
         colDB = new DBHelper(this, "columns");
         rowDB = new DBHelper(this, "rows");
+        memberDB = new DBHelper(this, "members");
 
         columnNames    = colDB.select();
         rowNames       = rowDB.select();
-        Log.d("colDB number: ", ""+colDB.number);
-        Log.d("rowDB number: ", ""+rowDB.number);
-        Log.d("colDB length: ", ""+columnNames.size());
-        Log.d("rowDB length: ", ""+rowNames.size());
-        for(String value : columnNames){
-            Log.d("*******", value);
-        }
-        for(String value : rowNames){
-            Log.d("*******2", value);
-        }
+        memberNames    = memberDB.select();
 
-        memberNames.add("member1");
-        memberNames.add("member2");
-        memberNames.add("member3");
+        memberNames.add("Add new ^_^");
 
 
         column = (Spinner)findViewById(R.id.spinner1);
@@ -74,22 +68,17 @@ public class PostIt extends AppCompatActivity {
         row.setAdapter(rowAdapter);
         priority.setAdapter(priorityAdapter);
         who.setAdapter(memberAdapter);
+
     }
 
-    /*public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-
-        switch (position) {
-            case 0:
-                // Whatever you want to happen when the first item gets selected
-                break;
-            case 1:
-                // Whatever you want to happen when the second item gets selected
-                break;
-            case 2:
-                // Whatever you want to happen when the thrid item gets selected
-                break;
-
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+        Spinner spinner = (Spinner)findViewById(R.id.spinner4);
+        int pos = spinner.getAdapter().getCount();
+        Log.d("pos :", ""+pos);
+        Log.d("position :", ""+position);
+        if(pos == position){
+            Log.d("happy times", "yay");
         }
-    }*/
+    }
 
 }
