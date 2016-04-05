@@ -175,7 +175,7 @@
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:background="@color/buttonblue"
             android:layout_below="@id/notes"
             android:id="@+id/postDescription"

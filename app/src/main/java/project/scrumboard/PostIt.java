@@ -2,6 +2,7 @@ package project.scrumboard;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,18 +60,17 @@ public class PostIt extends AppCompatActivity {
                 //log to check when it goes in here
                 Log.d("i have been pressed: ", "yeah..?");
                 //text values to be plugged into the db obtained from the spinners and stuff
-                EditText title          = (EditText) findViewById(R.id.postTitle);
-                EditText description    = (EditText) findViewById(R.id.postDescription);
-                String member           = who.getSelectedItem().toString();
-                String columnValue      = column.getSelectedItem().toString();
-                String rowValue         = row.getSelectedItem().toString();
-                String priorityVal      = priority.getSelectedItem().toString();
-                int priority            = 1 ;
+                EditText title = (EditText) findViewById(R.id.postTitle);
+                EditText description = (EditText) findViewById(R.id.postDescription);
+                String member = who.getSelectedItem().toString();
+                String columnValue = column.getSelectedItem().toString();
+                String rowValue = row.getSelectedItem().toString();
+                String priorityVal = priority.getSelectedItem().toString();
+                int priority = 1;
                 //setting the priority int value based off of the string text
-                if(priorityVal.equals("high")){
+                if (priorityVal.equals("high")) {
                     priority = 3;
-                }
-                else if(priorityVal.equals("medium")){
+                } else if (priorityVal.equals("medium")) {
                     priority = 2;
                 }
                 //insert all this stuff into the db
@@ -80,6 +80,8 @@ public class PostIt extends AppCompatActivity {
                         priority,
                         columnValue,
                         rowValue);
+                Intent intent = new Intent(PostIt.this, BoardMainActivity.class);
+                startActivity(intent);
             }
         });
 
