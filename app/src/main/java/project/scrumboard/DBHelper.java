@@ -82,6 +82,25 @@ public class DBHelper extends SQLiteOpenHelper {
         //db.execSQL("INSERT or REPLACE into data (value) values('anything here')");
     }
 
+    public void insertPost(String title,
+                           String description,
+                           String members,
+                           int priority,
+                           String columns,
+                           String rows){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.d("table name on insert", TABLE_NAME);
+        ContentValues values = new ContentValues();
+        values.put("title", title);
+        values.put("description", description);
+        values.put("members", members);
+        values.put("priority", priority);
+        values.put("column", columns);
+        values.put("row", rows);
+        db.insert(TABLE_NAME, null, values);
+        db.close();
+    }
+
     public ArrayList<String> select(){
         number = 0;
 

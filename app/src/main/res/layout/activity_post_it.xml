@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:id="@+id/title"
+        android:id="@+id/postTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
@@ -30,7 +30,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="275dp"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/postTitle"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
         android:background="@color/postIt">
@@ -178,17 +178,17 @@
             android:textColor="@color/black"
             android:background="@color/buttonblue"
             android:layout_below="@id/notes"
-            android:id="@+id/editNotes"
+            android:id="@+id/postDescription"
             android:gravity="left|top"
             android:inputType="textMultiLine"
             android:layout_margin="10dp"
-            android:layout_above="@+id/button" />
+            android:layout_above="@+id/createButton" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/createButton"
-            android:id="@+id/button"
+            android:id="@+id/createButton"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@color/buttonblue"

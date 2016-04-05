@@ -3,8 +3,11 @@ package project.scrumboard;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //this.deleteDatabase("Data.db");
+
         //creates and sets up the dbs
         colDB = new DBHelper(this, "columns");
         rowDB = new DBHelper(this, "rows");
@@ -30,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
         memberDB.setup();
         postDB.setup();
 
+        //Arraylist for values
+        ArrayList<String> test = postDB.select();
+
+        //this is for showing that things are getting saved to the post db
+        for(String values : test ){
+            Log.d("values from posts: ", values);
+        }
 
 
         viewAllProject = (Button) findViewById(R.id.previous);

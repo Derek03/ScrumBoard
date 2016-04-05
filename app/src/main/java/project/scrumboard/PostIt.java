@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,10 +22,9 @@ public class PostIt extends AppCompatActivity {
     private static DBHelper memberDB;
     private static DBHelper postDB;
     private Spinner column,
-            row,
-            priority,
-            who;
-    private static final String[] paths = {"state", "category", "requirements", "priority"};
+                    row,
+                    priority,
+                    who;
     private static String[] priorityNames = {"High", "Medium", "Low"};
     private static ArrayList<String> columnNames;
     private static ArrayList<String> rowNames;
@@ -39,14 +39,49 @@ public class PostIt extends AppCompatActivity {
         colDB = new DBHelper(this, "columns");
         rowDB = new DBHelper(this, "rows");
         memberDB = new DBHelper(this, "members");
+        postDB = new DBHelper(this, "posts");
 
         columnNames = colDB.select();
         rowNames = rowDB.select();
         memberNames = memberDB.select();
 
-        memberNames.add(" ");
-        memberNames.add("Add new ^_^");
+        //if this is the first time, give a blank entry
+        if(memberNames.size() == 0) {
+            memberNames.add(" ");
+        }
+        memberNames.add("Add new ( ಠ ಠ )");
 
+        //setting up the create button to insert the values into the postDB
+        Button createButton = (Button) findViewById(R.id.createButton);
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //log to check when it goes in here
+                Log.d("i have been pressed: ", "yeah..?");
+                //text values to be plugged into the db obtained from the spinners and stuff
+                EditText title          = (EditText) findViewById(R.id.postTitle);
+                EditText description    = (EditText) findViewById(R.id.postDescription);
+                String member           = who.getSelectedItem().toString();
+                String columnValue      = column.getSelectedItem().toString();
+                String rowValue         = row.getSelectedItem().toString();
+                String priorityVal      = priority.getSelectedItem().toString();
+                int priority            = 1 ;
+                //setting the priority int value based off of the string text
+                if(priorityVal.equals("high")){
+                    priority = 3;
+                }
+                else if(priorityVal.equals("medium")){
+                    priority = 2;
+                }
+                //insert all this stuff into the db
+                postDB.insertPost(title.getText().toString(),
+                        description.getText().toString(),
+                        member,
+                        priority,
+                        columnValue,
+                        rowValue);
+            }
+        });
 
         column = (Spinner) findViewById(R.id.spinner1);
         row = (Spinner) findViewById(R.id.spinner2);
@@ -107,11 +142,18 @@ public class PostIt extends AppCompatActivity {
         builder.setMessage("Enter the name of your new member:")
                 .setView(textboxString)
                 .setTitle("Add Member")
-                .setPositiveButton("Add",new DialogInterface.OnClickListener() {
+                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String value = textboxString.getText().toString();
-                        memberNames.add(1,value);
-                        //colDB.insert(value);
+                        //basically if this is the first value being added, remove the blank
+                        if (memberNames.contains(" ")) {
+                            memberNames.remove(" ");
+                        }
+                        //add the value to the array and save to db
+                        memberNames.add(0, value);
+                        memberDB.insert(value);
+                        //set spinner to select the new value
+                        who.setSelection(0);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -123,6 +165,5 @@ public class PostIt extends AppCompatActivity {
         // 3. Get the AlertDialog from create()
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
 }
