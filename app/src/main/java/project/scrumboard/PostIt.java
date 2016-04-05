@@ -121,6 +121,7 @@ public class PostIt extends AppCompatActivity {
                 if (pos == position - 1) {
                     addMember(arg0);
                 }
+
             }
 
             @Override

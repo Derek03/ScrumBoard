@@ -6,6 +6,7 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/stickielogo"
@@ -19,9 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PostIt"></activity>
-        <activity android:name=".NewBoard"></activity>
-        <activity android:name=".BoardMainActivity"></activity>
+        <activity android:name=".PostIt" />
+        <activity android:name=".NewBoard" />
+        <activity android:name=".BoardMainActivity" />
     </application>
 
 </manifest>

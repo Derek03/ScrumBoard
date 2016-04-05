@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Created by Spencer on 2/13/2016.
@@ -29,36 +30,16 @@ public class BoardMainActivity extends Activity {
     private Animator mCurrentAnimator;
     private int mShortAnimationDuration;
     private int j = 0;
-
     private GestureDetector detector;
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-
     private ImageView expandedImageView;
 
     private Integer[] mThumbIds = {
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7
+            R.drawable.postit,0,R.drawable.postit,
+            R.drawable.postit,R.drawable.postit,0,
+            R.drawable.postit,0,R.drawable.postit,
+            0,R.drawable.postit,0
     };
 
     @Override
@@ -70,7 +51,6 @@ public class BoardMainActivity extends Activity {
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
-
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int pos, long id) {
@@ -84,7 +64,6 @@ public class BoardMainActivity extends Activity {
     }
     class ImageAdapter extends BaseAdapter {
         private Context mContext;
-
         private LayoutInflater layoutInflater;
 
         public ImageAdapter(BoardMainActivity activity){
@@ -92,16 +71,12 @@ public class BoardMainActivity extends Activity {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-
-
         public int getCount() {
             return mThumbIds.length;
         }
-
         public Object getItem(int position) {
             return position;
         }
-
         public long getItemId(int position) {
             return position;
         }
@@ -117,7 +92,6 @@ public class BoardMainActivity extends Activity {
             }
 
             ImageView iv = (ImageView) listItem.findViewById(R.id.thumb);
-
             iv.setBackgroundResource(mThumbIds[p]);
 
             return listItem;
@@ -166,7 +140,6 @@ public class BoardMainActivity extends Activity {
 
         thumbView.getGlobalVisibleRect(startBounds);
         findViewById(R.id.container).getGlobalVisibleRect(finalBounds, globalOffset);
-
         startBounds.offset(-globalOffset.x, -globalOffset.y);
         finalBounds.offset(-globalOffset.x, -globalOffset.y);
 
@@ -180,9 +153,7 @@ public class BoardMainActivity extends Activity {
             float deltaWidth = (startWidth - startBounds.width()) / 2;
             startBounds.left -= deltaWidth;
             startBounds.right += deltaWidth;
-
         } else {
-
             startScale = (float) startBounds.width() / finalBounds.width();
             float startHeight = startScale * finalBounds.height();
             float deltaHeight = (startHeight = startBounds.height()) / 2;
@@ -192,12 +163,10 @@ public class BoardMainActivity extends Activity {
 
         thumbView.setAlpha(0f);
         expandedImageView.setVisibility(View.VISIBLE);
-
         expandedImageView.setPivotX(0f);
         expandedImageView.setPivotY(0f);
 
         AnimatorSet set = new AnimatorSet();
-
         set.play(ObjectAnimator.ofFloat(expandedImageView, View.X, startBounds.left, finalBounds.left))
                 .with(ObjectAnimator.ofFloat(expandedImageView, View.Y, startBounds.top, finalBounds.top))
                 .with(ObjectAnimator.ofFloat(expandedImageView, View.SCALE_X, startScale, 1f))
@@ -229,9 +198,7 @@ public class BoardMainActivity extends Activity {
                 if(mCurrentAnimator != null) {
                     mCurrentAnimator.cancel();
                 }
-
                 AnimatorSet set = new AnimatorSet();
-
                 set.play(ObjectAnimator.ofFloat(expandedImageView, View.X, startBounds.left))
                         .with(ObjectAnimator.ofFloat(expandedImageView, View.Y, startBounds.top))
                         .with(ObjectAnimator.ofFloat(expandedImageView, View.SCALE_X, startScaleFinal))
@@ -241,19 +208,18 @@ public class BoardMainActivity extends Activity {
                 set.setInterpolator(new DecelerateInterpolator());
                 set.addListener(new AnimatorListenerAdapter() {
 
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        thumbView.setAlpha(1f);
-                        expandedImageView.setVisibility(View.GONE);
-                        mCurrentAnimator = null;
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-                        thumbView.setAlpha(1f);
-                        expandedImageView.setVisibility(View.GONE);
-                        mCurrentAnimator = null;
-                    }
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    thumbView.setAlpha(1f);
+                    expandedImageView.setVisibility(View.GONE);
+                    mCurrentAnimator = null;
+                }
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    thumbView.setAlpha(1f);
+                    expandedImageView.setVisibility(View.GONE);
+                    mCurrentAnimator = null;
+                }
                 });
                 set.start();
                 mCurrentAnimator = set;
@@ -261,18 +227,19 @@ public class BoardMainActivity extends Activity {
         });
     }
 
+
+
     private class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener{
         @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+        public boolean onFling(MotionEvent e1,
+                               MotionEvent e2,
+                               float velocityX,
                                float velocityY) {
 
             try {
-
                 if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY){
-
                     if(mThumbIds.length > j) {
                         j++;
-
                         if(j < mThumbIds.length) {
                             expandedImageView.setImageResource(mThumbIds[j]);
                             return true;
@@ -283,7 +250,6 @@ public class BoardMainActivity extends Activity {
                         }
                     }
                 } else if(e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-
                     if(j > 0) {
                         j--;
                         expandedImageView.setImageResource(mThumbIds[j]);
