@@ -4,11 +4,25 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,6 +34,12 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 /**
  * Created by Spencer on 2/13/2016.
@@ -36,10 +56,7 @@ public class BoardMainActivity extends Activity {
     private ImageView expandedImageView;
 
     private Integer[] mThumbIds = {
-            R.drawable.postit,0,R.drawable.postit,
-            R.drawable.postit,R.drawable.postit,0,
-            R.drawable.postit,0,R.drawable.postit,
-            0,R.drawable.postit,0
+            R.drawable.postit,R.drawable.postit
     };
 
     @Override
@@ -59,8 +76,7 @@ public class BoardMainActivity extends Activity {
             }
         });
 
-        mShortAnimationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
-
+         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
     }
     class ImageAdapter extends BaseAdapter {
         private Context mContext;
@@ -85,30 +101,16 @@ public class BoardMainActivity extends Activity {
         public View getView(int position, View convertView, ViewGroup parent) {
 
             View listItem = convertView;
-            int p = position;
 
             if (listItem == null) {
                 listItem = layoutInflater.inflate(R.layout.single_grid_item, null);
             }
+            Log.d("uhmm",""+position);
+            new DrawTitle().execute(mThumbIds[position]);
 
-            ImageView iv = (ImageView) listItem.findViewById(R.id.thumb);
-            iv.setBackgroundResource(mThumbIds[p]);
+            //iv.setBackgroundResource(mThumbIds[p]);
 
             return listItem;
-
-            /*ImageView imageView;
-            if (convertView == null) {
-                // if it's not recycled, initialize some attributes
-                imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(2, 2, 2, 2);
-            } else {
-                imageView = (ImageView) convertView;
-            }
-
-            imageView.setImageResource(mThumbIds[position]);
-            return imageView; */
         }
 
     }
@@ -227,8 +229,6 @@ public class BoardMainActivity extends Activity {
         });
     }
 
-
-
     private class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener{
         @Override
         public boolean onFling(MotionEvent e1,
@@ -265,6 +265,51 @@ public class BoardMainActivity extends Activity {
             }
             return false;
         }
+    }
+
+    class DrawTitle
+            extends AsyncTask<Integer, Void, String> {
+        protected String doInBackground(final Integer... img) {
+
+            try {
+
+                Bitmap bm = BitmapFactory.decodeResource(getResources(), img[0]);
+                Bitmap.Config bitmapConfig = bm.getConfig();
+                if(bitmapConfig == null) {
+                    bitmapConfig = Bitmap.Config.ARGB_8888;
+                }
+                Bitmap bmn = bm.copy(bitmapConfig, true);
+
+                Canvas canvas = new Canvas(bmn);
+
+                // new antialised Paint
+                Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                // text color - #3D3D3D
+                paint.setColor(Color.BLACK);
+                // text size in pixels
+                paint.setTextSize(500);
+                canvas.drawBitmap(bmn, 0, 0, paint);
+                canvas.drawText("title", 300, 600, paint);
+
+                final Drawable d = new BitmapDrawable(getResources(), bmn);
+
+                runOnUiThread(new Runnable() {
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+                    public void run() {
+                        //update ui here
+                        ImageView iv = (ImageView) findViewById(R.id.thumb);
+                        iv.setBackground(d);
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return(null);
+        }
+
+        protected void onPostExecute(final String data) {}
     }
 }
 
