@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = null;
             switch(view.getTag().toString()) {
                 case "Previous":
-                    intent = new Intent(MainActivity.this, BoardMainActivity.class);
+                    intent = new Intent(MainActivity.this, Table.class);
                     break;
                 case "Other":
                     //intent = new Intent(MainActivity.this, PostIt.class);

@@ -80,7 +80,7 @@ public class PostIt extends AppCompatActivity {
                         priority,
                         columnValue,
                         rowValue);
-                Intent intent = new Intent(PostIt.this, BoardMainActivity.class);
+                Intent intent = new Intent(PostIt.this, Table.class);
                 startActivity(intent);
             }
         });

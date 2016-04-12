@@ -6,6 +6,9 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -23,6 +26,7 @@
         <activity android:name=".PostIt" />
         <activity android:name=".NewBoard" />
         <activity android:name=".BoardMainActivity" />
+        <activity android:name=".Table"></activity>
     </application>
 
 </manifest>

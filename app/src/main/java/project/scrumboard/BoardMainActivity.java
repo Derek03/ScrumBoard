@@ -56,7 +56,7 @@ public class BoardMainActivity extends Activity {
     private ImageView expandedImageView;
 
     private Integer[] mThumbIds = {
-            R.drawable.postit,R.drawable.postit
+            R.drawable.postit, R.drawable.postit
     };
 
     @Override
@@ -271,41 +271,41 @@ public class BoardMainActivity extends Activity {
             extends AsyncTask<Integer, Void, String> {
         protected String doInBackground(final Integer... img) {
 
-            try {
+                try {
 
-                Bitmap bm = BitmapFactory.decodeResource(getResources(), img[0]);
-                Bitmap.Config bitmapConfig = bm.getConfig();
-                if(bitmapConfig == null) {
-                    bitmapConfig = Bitmap.Config.ARGB_8888;
-                }
-                Bitmap bmn = bm.copy(bitmapConfig, true);
-
-                Canvas canvas = new Canvas(bmn);
-
-                // new antialised Paint
-                Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                // text color - #3D3D3D
-                paint.setColor(Color.BLACK);
-                // text size in pixels
-                paint.setTextSize(500);
-                canvas.drawBitmap(bmn, 0, 0, paint);
-                canvas.drawText("title", 300, 600, paint);
-
-                final Drawable d = new BitmapDrawable(getResources(), bmn);
-
-                runOnUiThread(new Runnable() {
-                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-                    @Override
-                    public void run() {
-                        //update ui here
-                        ImageView iv = (ImageView) findViewById(R.id.thumb);
-                        iv.setBackground(d);
+                    Bitmap bm = BitmapFactory.decodeResource(getResources(), img[0]);
+                    Bitmap.Config bitmapConfig = bm.getConfig();
+                    if (bitmapConfig == null) {
+                        bitmapConfig = Bitmap.Config.ARGB_8888;
                     }
-                });
+                    Bitmap bmn = bm.copy(bitmapConfig, true);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                    Canvas canvas = new Canvas(bmn);
+
+                    // new antialised Paint
+                    Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                    // text color - #3D3D3D
+                    paint.setColor(Color.BLACK);
+                    // text size in pixels
+                    paint.setTextSize(200);
+                    canvas.drawBitmap(bmn, 0, 0, paint);
+                    canvas.drawText("title", 200, 300, paint);
+
+                    final Drawable d = new BitmapDrawable(getResources(), bmn);
+
+                    runOnUiThread(new Runnable() {
+                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                        @Override
+                        public void run() {
+                            //update ui here
+                            ImageView iv = (ImageView) findViewById(R.id.thumb);
+                            iv.setBackground(d);
+                        }
+                    });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             return(null);
         }
 

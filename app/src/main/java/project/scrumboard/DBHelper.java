@@ -123,6 +123,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public String selectPostTitle(String col, String row){
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME +
+                " WHERE column = '"+col+"' and row = '"+row+"'";
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Cursor cursor      = db.rawQuery(selectQuery, null);
+        String data = "FAILED";
+
+        if (cursor.moveToFirst()) {
+            data = cursor.getString(1);
+        }
+        cursor.close();
+        return data;
+    }
+
     public void delete(){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(SQL_DELETE_ENTRIES);
