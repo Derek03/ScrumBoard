@@ -137,6 +137,63 @@ public class DBHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public void deleteSinglePost(String title, String col, String row){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME +
+                " WHERE title = '"+title+"' and column = '"+col+"' and row = '"+row+"'";
+        db.execSQL(query);
+    }
+    public void deleteRow(String row){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME +
+                " WHERE row = '"+row+"'";
+        db.execSQL(query);
+    }
+    public void deleteCol(String col){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME +
+                " WHERE column = '"+col+"'";
+        db.execSQL(query);
+    }
+    public void updatePost(String title,
+                           String col,
+                           String row,
+                           String newTitle,
+                           String newCol,
+                           String newRow,
+                           String newDesc,
+                           String newMem,
+                           int newPriority){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        String query = "UPDATE " + TABLE_NAME +
+                " set column = '"+newCol+"', row = '"+newRow+"', description = '"+newDesc+
+                "', members = '"+newMem+"', priority = '"+newPriority+"', title = '"+newTitle+"'"+
+                " WHERE title = '"+title+"' and column = '"+col+"' and row = '"+row+"'";
+        db.execSQL(query);
+    }
+    public String[] getValues(String title, String col, String row){
+        String[] values = new String[6];
+        SQLiteDatabase db  = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME +
+                " WHERE title = '"+title+"' and column = '"+col+"' and row = '"+row+"'";
+        //db.execSQL(query);
+        Cursor cursor      = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                values[0] = cursor.getString(1);
+                values[1] = cursor.getString(2);
+                values[2] = cursor.getString(3);
+                values[3] = String.valueOf(cursor.getInt(4));
+                values[4] = cursor.getString(5);
+                values[5] = cursor.getString(6);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return values;
+    }
+
+
     public void delete(){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(SQL_DELETE_ENTRIES);

@@ -35,13 +35,17 @@ public class MainActivity extends AppCompatActivity {
         memberDB.setup();
         postDB.setup();
 
+//        String[] values = postDB.getValues("NewTitle","newcol","newrow");
+//
+//        for(int i = 0; i < values.length; i++){
+//            Log.d("values in post", values[i]);
+//        }
+
+
         //Arraylist for values
         ArrayList<String> test = postDB.select();
 
         //this is for showing that things are getting saved to the post db
-        for(String values : test ){
-            Log.d("values from posts: ", values);
-        }
 
 
         viewAllProject = (Button) findViewById(R.id.previous);
