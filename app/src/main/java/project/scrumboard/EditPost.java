@@ -31,6 +31,10 @@ public class EditPost extends AppCompatActivity {
     private static ArrayList<String> columnNames;
     private static ArrayList<String> rowNames;
     private static ArrayList<String> memberNames;
+    private String oldTitle;
+    private String oldCol;
+    private String oldRow;
+    private String[] postValues;
 
 
     @Override
@@ -43,6 +47,20 @@ public class EditPost extends AppCompatActivity {
         memberDB = new DBHelper(this, "members");
         postDB = new DBHelper(this, "posts");
 
+        Intent intent = getIntent();
+        oldTitle = intent.getStringExtra("title");
+        oldCol = intent.getStringExtra("col");
+        oldRow = intent.getStringExtra("row");
+
+        postValues = postDB.getValues(oldTitle, oldCol, oldRow);
+
+        EditText title = (EditText) findViewById(R.id.postTitle);
+        title.setText(postValues[0]);
+
+        EditText description = (EditText) findViewById(R.id.postDescription);
+        description.setText(postValues[1]);
+
+
         columnNames = colDB.select();
         rowNames = rowDB.select();
         memberNames = memberDB.select();
@@ -54,8 +72,8 @@ public class EditPost extends AppCompatActivity {
         memberNames.add("Add new ( ಠ ಠ )");
 
         //setting up the create button to insert the values into the postDB
-        Button createButton = (Button) findViewById(R.id.createButton);
-        createButton.setOnClickListener(new View.OnClickListener() {
+        Button updateButton = (Button) findViewById(R.id.updateButton);
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //log to check when it goes in here
@@ -69,18 +87,27 @@ public class EditPost extends AppCompatActivity {
                 String priorityVal = priority.getSelectedItem().toString();
                 int priority = 1;
                 //setting the priority int value based off of the string text
-                if (priorityVal.equals("high")) {
+                if (priorityVal.equals("High")) {
                     priority = 3;
-                } else if (priorityVal.equals("medium")) {
+                } else if (priorityVal.equals("Medium")) {
                     priority = 2;
                 }
                 //insert all this stuff into the db
-                postDB.insertPost(title.getText().toString(),
+                postDB.updatePost(oldTitle, oldCol, oldRow,
+                        title.getText().toString(),
+                        columnValue,
+                        rowValue,
                         description.getText().toString(),
                         member,
-                        priority,
-                        columnValue,
-                        rowValue);
+                        priority);
+                Intent intent = new Intent(EditPost.this, Table.class);
+                startActivity(intent);
+            }
+        });
+        Button deleteButton = (Button) findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                postDB.deleteSinglePost(oldTitle,oldCol,oldRow);
                 Intent intent = new Intent(EditPost.this, Table.class);
                 startActivity(intent);
             }
@@ -133,6 +160,30 @@ public class EditPost extends AppCompatActivity {
                 //
             }
         });
+        int holder = -1;
+        holder = rowNames.indexOf(postValues[5]);
+        if(holder!=-1){
+            row.setSelection(holder);
+        }
+        holder = columnNames.indexOf(postValues[4]);
+        if(holder!=-1){
+            column.setSelection(holder);
+        }
+        holder = memberNames.indexOf(postValues[2]);
+        if(holder!=-1){
+            who.setSelection(holder);
+        }
+        //Log.d("WHAT BE YOU","'"+postValues[3]+"'");
+        if(postValues[3].equals("3")){
+            priority.setSelection(0);
+        }
+        else if(postValues[3].equals("2")){
+            priority.setSelection(1);
+        }
+        else if(postValues[3].equals("1")){
+            priority.setSelection(2);
+        }
+
     }
 
     private void addMember(View view) {

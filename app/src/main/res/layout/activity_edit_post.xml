@@ -181,28 +181,31 @@
             android:id="@+id/postDescription"
             android:gravity="left|top"
             android:inputType="textMultiLine"
-            android:layout_margin="10dp"
-            android:layout_above="@+id/createButton" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_above="@+id/updateButton" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/updateButton"
             android:id="@+id/updateButton"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
             android:background="@color/buttonblue"
-            android:layout_marginBottom="5dp"/>
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/notes"
+            android:layout_toStartOf="@+id/notes" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/deleteButton"
             android:id="@+id/deleteButton"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
             android:background="@color/buttonblue"
-            android:layout_marginBottom="5dp"/>
+            android:layout_alignTop="@+id/updateButton"
+            android:layout_toRightOf="@+id/notes"
+            android:layout_toEndOf="@+id/notes" />
     </RelativeLayout>
 
 

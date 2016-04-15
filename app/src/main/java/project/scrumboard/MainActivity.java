@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         //this is for showing that things are getting saved to the post db
 
 
-        viewAllProject = (Button) findViewById(R.id.previous);
+        viewAllProject = (Button) findViewById(R.id.board);
         viewAllProject.setOnClickListener(Listener);
         newPButton = (Button) findViewById(R.id.add);
         newPButton.setOnClickListener(Listener);
@@ -61,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
             switch(view.getTag().toString()) {
                 case "Previous":
                     intent = new Intent(MainActivity.this, Table.class);
-                    break;
-                case "Other":
-                    //intent = new Intent(MainActivity.this, PostIt.class);
                     break;
                 case "Add":
                     intent = new Intent(MainActivity.this, NewBoard.class);

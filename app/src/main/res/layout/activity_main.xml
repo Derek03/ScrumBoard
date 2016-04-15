@@ -14,28 +14,13 @@
     <Button
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:text="Previous Project"
+        android:text="Project Board"
         android:textColor="@color/black"
-        android:id="@+id/previous"
+        android:id="@+id/board"
         android:tag='Previous'
         android:layout_marginTop="45dp"
         android:layout_centerHorizontal="true"
         android:background="@color/postIt" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Others"
-        android:tag='Others'
-        android:id="@+id/others"
-        android:layout_below="@+id/previous"
-        android:layout_marginTop="70dp"
-        android:layout_alignRight="@+id/previous"
-        android:layout_alignEnd="@+id/previous"
-        android:layout_alignLeft="@+id/previous"
-        android:layout_alignStart="@+id/previous"
-        android:background="@color/buttonblue" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

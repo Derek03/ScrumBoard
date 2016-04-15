@@ -1,6 +1,7 @@
 package project.scrumboard;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -140,6 +142,8 @@ public class Table extends AppCompatActivity {
                         but.setBackground(d);
                         but.setMaxWidth(100);
                         but.setMaxHeight(100);
+                        but.setTag(String.valueOf(i) + "," + String.valueOf(j));
+                        setButtonListener(but);
                         rowTitle.addView(but);
 
                     } catch (Exception e) {
@@ -155,5 +159,24 @@ public class Table extends AppCompatActivity {
             }
             table.addView(rowTitle);
         }
+    }
+
+    private void setButtonListener(ImageButton but){
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tag = v.getTag().toString();
+                String values[] = tag.split(",");
+                int i = Integer.parseInt(values[0]);
+                int j = Integer.parseInt(values[1]);
+                String title = postDB.selectPostTitle(columnNames.get(j), rowNames.get(i - 1));
+                Intent intent = new Intent(Table.this, EditPost.class);
+                intent.putExtra("title", title);
+                intent.putExtra("col", columnNames.get(j));
+                intent.putExtra("row", rowNames.get(i-1));
+
+                startActivity(intent);
+            }
+        });
     }
 }

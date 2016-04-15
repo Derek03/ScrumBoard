@@ -172,6 +172,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
     public String[] getValues(String title, String col, String row){
+        Log.d("title is ", title);
+        Log.d("col is ", col);
+        Log.d("row is ", row);
         String[] values = new String[6];
         SQLiteDatabase db  = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME +
