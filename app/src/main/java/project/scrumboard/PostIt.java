@@ -68,9 +68,9 @@ public class PostIt extends AppCompatActivity {
                 String priorityVal = priority.getSelectedItem().toString();
                 int priority = 1;
                 //setting the priority int value based off of the string text
-                if (priorityVal.equals("high")) {
+                if (priorityVal.equals("High")) {
                     priority = 3;
-                } else if (priorityVal.equals("medium")) {
+                } else if (priorityVal.equals("Medium")) {
                     priority = 2;
                 }
                 //insert all this stuff into the db
