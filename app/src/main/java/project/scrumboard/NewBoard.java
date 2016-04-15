@@ -78,6 +78,7 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
                         String value = textboxString.getText().toString();
                         columnValues.add(value);
                         colDB.insert(value);
+                        colAdapter.notifyDataSetChanged();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -111,6 +112,7 @@ public class NewBoard extends AppCompatActivity implements AdapterView.OnItemCli
                         String value = textboxString.getText().toString();
                         rowValues.add(value);
                         rowDB.insert(value);
+                        rowAdapter.notifyDataSetChanged();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
